@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="stagesPR.json"></script>
+</head>
+<body>
+
+<p>Looping through arrays inside arrays.</p>
+
+
+<p id="NR">Nombre de NR : </p>
+<p id="NC">Nombre de Nc : </p>
+<p id="500">Nombre de 500 : </p>
+<p id="1000">Nombre de 1000 : </p>
+<p id="1000sup">Nombre de 1000+ : </p>
+
+<script>
+var x = "" ;
+var nbNR = 0;
+var nbNC = 0;
+var nb500 = 0;
+var nb1000 = 0;
+var nb1000sup = 0;
+
+var presentation = JSON.parse(stagesPR.json);
+for (i in presentation.Presentations) {
+	    x += "<h2>" + presentation.Presentations[i].eleveid + "</h2>";
+		if (presentation.Presentations[i].remuneration == "NR") {
+			nbNR +=1;
+		}
+		if (presentation.Presentations[i].remuneration == "NC") {
+			nbNC +=1;
+		}
+		if (presentation.Presentations[i].remuneration == "<500") {
+			nb500 +=1;
+		}
+		if (presentation.Presentations[i].remuneration == "<1000") {
+			nb1000 +=1;
+		}
+		if (presentation.Presentations[i].remuneration == "1000+") {
+			nb1000sup +=1;
+		}
+		
+}
+
+//document.getElementById("demo").innerHTML = x;
+document.getElementById("NR").innerHTML = nbNR;
+document.getElementById("NC").innerHTML = nbNC;
+document.getElementById("500").innerHTML = nb500;
+document.getElementById("1000").innerHTML = nb1000;
+document.getElementById("1000sup").innerHTML = nb1000sup;
+
+</script>
+
+</body>
+</html>
