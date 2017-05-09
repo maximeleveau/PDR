@@ -1,4 +1,3 @@
-
 	 $(document).ready(function() {		 
 		 // var url = 'http://tim/stages/PresentationStage/recherche-proxy.asp?_dc=1491211964711&command=getListeStat&format=JSON&typestage=0&ch_globale=&ch_domaine=&datedebut=&start=20&limit=30';
 		 // command: "getListeStat" dédié au PDR
@@ -48,11 +47,12 @@
 		     // headers in the 'Access-Control-Allow-Headers' response header.
 		   },
 
-		   success: function(stagesDataArray) {
-			   calculVal(stagesDataArray);
+		   success: function(presentation) {
+			   graph(calculVal(presentation));
+			   geo(presentation);
 		     // Here's where you handle a successful response.
-				/*console.log(stagesDataArray);
-				displayTableHeadInto($('#stagesTable thead'),Object.keys(stagesDataArray.Presentations[0]));
+				//console.log(stagesDataArray);
+				/*displayTableHeadInto($('#stagesTable thead'),Object.keys(stagesDataArray.Presentations[0]));
 				
 	  			$.each(stagesDataArray.Presentations, function(k,s) {
 		 			appendStageDataInto($('#stagesTable tbody'),s);
@@ -88,12 +88,14 @@
 		  //  				$tableElement.append(htmlText);
 		  //  		  });
   		  
-	 });
+	 /*});
 
 
-$(function() {
+$(function graph() {*/
 	
-	var tabRes = calculVal();
+	
+function graph(tabRes){
+	
 /*
     Morris.Area({
         element: 'morris-area-chart',
@@ -343,15 +345,16 @@ $(function() {
 		barColors:['#d4630f', 'a28c79']
     });
 	}
+}
 });
 
-function calculVal(dataArray){
+
+function calculVal(presentation){
 // tabRes[0] = remuneration, tabRes[1] = statut, tabRes[2] = act
 	var tabRes = [];
 	var tabRem = [0,0,0,0,0,];
 	var tabStatut = [0,0,0,0,0,0];
-	var tabAct = [0,0,0,0,0,0];
-	var presentation = dataArray;	
+	var tabAct = [0,0,0,0,0,0];	
 	for (i in presentation.Presentations) {
 		
 		//********** REMUNERATION *******************
@@ -421,4 +424,19 @@ function calculVal(dataArray){
 	tabRes[1] = tabStatut;
 	tabRes[2] = tabAct;
 	return tabRes;
-}; 
+};
+
+function geo(presentation){
+		var tabGeo;
+		for (i in presentation.Presentations) {
+			tabGeo[i][0] = presentation.Presentations[i].cp_ent;
+			tabGeo[i][1] = presentation.Presentations[i].ville_ent;
+			tabGeo[i][2] = presentation.Presentations[i].pays_ent;
+		}
+		console.log(tabGeo);
+}
+			
+			
+			
+			
+			
