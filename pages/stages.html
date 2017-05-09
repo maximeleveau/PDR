@@ -433,7 +433,7 @@
 	 
 	 
 	 $(document).ready(function() {		 
-		 var url = 'http://tim/stages/PresentationStage/recherche-proxy.asp?_dc=1491211964711&command=getListeStat&format=JSON&typestage=0&ch_globale=&ch_domaine=&datedebut=&start=20&limit=30';
+		 // var url = 'http://tim/stages/PresentationStage/recherche-proxy.asp?_dc=1491211964711&command=getListeStat&format=JSON&typestage=0&ch_globale=&ch_domaine=&datedebut=&start=20&limit=30';
 		 // command: "getListeStat" dédié au PDR
 		 //
 		 // format: "JSON", possible XML
@@ -446,6 +446,8 @@
 		 // ch_globale: chaîne de filtre (vide en l'absence de critère). La recherche stricte porte sur le nom de l'entreprise, la description du stage, les activités de l'entreprise. (, les nom et prénom de l'étudiant, fonctionnalité à retirer)
 		 // ch_domaine: recherche sur les domaines d'activité de l'entreprise
 		 // datedebut: ne retourne que les résultats des stages ayant débuté après cette date
+		 
+		 var url = '../data/stagesPR.json';
 		 
 		 $.ajax({
 
