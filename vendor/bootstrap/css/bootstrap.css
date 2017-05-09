@@ -100,6 +100,14 @@ h1.yorkwhiteletter.darkblue{
 h1.yorkwhiteletter.darkorange{
   color: #dd6600;
 }
+h1.lemonmilk {
+  font-family: "lemonmilk", serif;
+  font-size: 40px;
+  width: 100%;
+}
+h1.lemonmilk.large{
+  font-size:74px;
+}
 mark {
   color: #000;
   background: #ff0;
@@ -312,6 +320,11 @@ th {
 @font-face {
   font-family: "jukebox";
   src: url("jukebox.ttf");
+}
+
+@font-face {
+  font-family: "lemonmilk";
+  src: url("lemonmilk.otf");
 }
 
 .glyphicon {
