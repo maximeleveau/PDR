@@ -330,4 +330,4 @@ function calculVal(){
 	tabRes[1] = tabStatut;
 	tabRes[2] = tabAct;
 	return tabRes;
-};
+}; 
