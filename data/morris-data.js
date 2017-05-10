@@ -289,27 +289,38 @@ function graph(tabRes){
     });
 	
 		Morris.Donut({
-			colors: ['#ec6e11', '#5c2b06', '#743708', '#8c4209', '#a44d0b', '#bc580d', '#d4630f'],
+			colors: ['#f7c59f', '#f3a870', '#ef8b40', '#ec6e11', '#5c2b06', '#743708', '#8c4209', '#a44d0b', '#bc580d', '#d4630f'],
 			element: 'morris-donut-chart-3-oapi',
 			data: [{
-				label: "Industries",
+				label: "Exploitation des ressources naturelles",
 				value: tabRes[2][0]
 			}, {
-				label: "Metallurgie",
+				label: "Ind. Mécaniques-Matériaux",
 				value: tabRes[2][1]
 			}, {
-				label: "Energie",
+				label: "Production-Distribution Energie",
 				value: tabRes[2][2]
 			}, {
-				label: "Auto/Naval",
+				label: "Transports-construction",
 				value: tabRes[2][3]
 			}, {
-				label: "BTP",
+				label: "Transports-exploitation",
 				value: tabRes[2][4]
-			}
-			, {
-				label: "Conseil/Finance",
+			}, {
+				label: "Batiments-Travaux publics",
 				value: tabRes[2][5]
+			}, {
+				label: "Ind. chimiques-pharmaceutiques",
+				value: tabRes[2][6]
+			}, {
+				label: "Ind. agro-alimentaires",
+				value: tabRes[2][7]
+			}, {
+				label: "Services",
+				value: tabRes[2][8]
+			}, {
+				label: "Industries diverses",
+				value: tabRes[2][9]
 			}],
         resize: true
     });
@@ -354,7 +365,7 @@ function calculVal(presentation){
 	var tabRes = [];
 	var tabRem = [0,0,0,0,0,];
 	var tabStatut = [0,0,0,0,0,0];
-	var tabAct = [0,0,0,0,0,0];	
+	var tabAct = [0,0,0,0,0,0,0,0,0,0];	
 	for (i in presentation.Presentations) {
 		
 		//********** REMUNERATION *******************
@@ -378,23 +389,35 @@ function calculVal(presentation){
 			
 			//*************** ACTIVITE *********************
 			
-			if (presentation.Presentations[i].CA1_code == '50' || presentation.Presentations[i].CA1_code == '52' || presentation.Presentations[i].CA1_code == '53' || presentation.Presentations[i].CA1_code == '54' || presentation.Presentations[i].CA1_code == '56' || presentation.Presentations[i].CA1_code == '26' ){
+			if (presentation.Presentations[i].CA1_code == '50' || presentation.Presentations[i].CA1_code == '52' || presentation.Presentations[i].CA1_code == '1' || presentation.Presentations[i].CA1_code == '9' || presentation.Presentations[i].CA1_code == '48' || presentation.Presentations[i].CA1_code == '43' ){
 				tabAct[0] +=1;
 			}
-			if (presentation.Presentations[i].CA1_code == '10' || presentation.Presentations[i].CA1_code == '9' || presentation.Presentations[i].CA1_code == '12'){
+			if (presentation.Presentations[i].CA1_code == '10' || presentation.Presentations[i].CA1_code == '22' || presentation.Presentations[i].CA1_code == '12' || presentation.Presentations[i].CA1_code == '53'){
 				tabAct[1] +=1;
 			}		
 			if (presentation.Presentations[i].CA1_code == '4'){
 				tabAct[2] +=1;
-			}		
-			if (presentation.Presentations[i].CA1_code == '31' || presentation.Presentations[i].CA1_code == '32'){
+			}	
+			if (presentation.Presentations[i].CA1_code == '31' || presentation.Presentations[i].CA1_code == '32'|| presentation.Presentations[i].CA1_code == '33'){
 				tabAct[3] +=1;
+			}
+			if (presentation.Presentations[i].CA1_code == '70' || presentation.Presentations[i].CA1_code == '75'){
+				tabAct[4] +=1;
 			}		
 			if (presentation.Presentations[i].CA1_code == '55'){
-				tabAct[4] +=1;
-			}
-			if (presentation.Presentations[i].CA1_code == '76' || presentation.Presentations[i].CA1_code == '77' || presentation.Presentations[i].CA1_code == '88' || presentation.Presentations[i].CA1_code == '90'){
 				tabAct[5] +=1;
+			}
+			if (presentation.Presentations[i].CA1_code == '17'){
+				tabAct[6] +=1;
+			}
+			if (presentation.Presentations[i].CA1_code == '35'){
+				tabAct[7] +=1;
+			}
+			if (presentation.Presentations[i].CA1_code == '76' || presentation.Presentations[i].CA1_code == '77' || presentation.Presentations[i].CA1_code == '88' || presentation.Presentations[i].CA1_code == '90'|| presentation.Presentations[i].CA1_code == '84'|| presentation.Presentations[i].CA1_code == '57'|| presentation.Presentations[i].CA1_code == '62'|| presentation.Presentations[i].CA1_code == '69'|| presentation.Presentations[i].CA1_code == '56'|| presentation.Presentations[i].CA1_code == '82'){
+				tabAct[8] +=1;
+			}
+			if (presentation.Presentations[i].CA1_code == '26' || presentation.Presentations[i].CA1_code == '28' || presentation.Presentations[i].CA1_code == '54'){
+				tabAct[9] +=1;
 			}
 			
 			
@@ -426,14 +449,22 @@ function calculVal(presentation){
 	return tabRes;
 };
 
+
+
+
 function geo(presentation){
-		var tabGeo;
+	var dataString ="['City'],\n";
 		for (i in presentation.Presentations) {
-			tabGeo[i][0] = presentation.Presentations[i].cp_ent;
-			tabGeo[i][1] = presentation.Presentations[i].ville_ent;
-			tabGeo[i][2] = presentation.Presentations[i].pays_ent;
+			//dataString+='{"CP" : "';
+			//dataString += presentation.Presentations[i].cp_ent;
+			dataString +="['";
+			dataString += presentation.Presentations[i].ville_ent;
+			dataString +="'],\n";
+			//dataString += presentation.Presentations[i].pays_ent;
+			//dataString +='"},';
 		}
-		console.log(tabGeo);
+	//dataString +=']}'
+		console.log(dataString);
 }
 			
 			
